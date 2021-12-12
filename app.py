@@ -6,17 +6,23 @@ from flask_cors import CORS, cross_origin
 
 # DB 
 def manage_db():
-    endpoint = "https://digiqdb.documents.azure.com:443/"
-    key = 'pbK5sHjqn4JMj8Qx9Lk934VFxcGOdNB55MlJKsoz6t39xCFl3rA4AWT7kHDl1bXMYbI0FGl36ISTjUSAwh9vMg=='
+    endpoint = os.environ['DB_ENDPOINT']
+    key = os.environ['DB_KEY']
+    database_name = os.environ['DB_NAME']
+    container_queues_name = os.environ['DB_CONT_Q']
+    container_users_name = os.environ['DB_CONT_U']
+    
+#     endpoint = "https://digiqdb.documents.azure.com:443/"
+#     key = 'pbK5sHjqn4JMj8Qx9Lk934VFxcGOdNB55MlJKsoz6t39xCFl3rA4AWT7kHDl1bXMYbI0FGl36ISTjUSAwh9vMg=='
     client = CosmosClient(endpoint, key)
-    database_name = 'digiqdb'
+#     database_name = 'digiqdb'
     database = client.create_database_if_not_exists(id=database_name)
-    container_queues_name = 'queues_new'
+#     container_queues_name = 'queues_new'
     container_queues = database.create_container_if_not_exists(
         id=container_queues_name, 
         partition_key=PartitionKey(path="/id")
     )
-    container_users_name = 'users_new'
+#     container_users_name = 'users_new'
     container_users = database.create_container_if_not_exists(
         id=container_users_name, 
         partition_key=PartitionKey(path="/id")
