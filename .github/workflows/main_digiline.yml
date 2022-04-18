@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'Digiline'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FCE8B40A6F714B07AA4C32D7A244ADDC }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_31958567EB7F4B7F9D2BE1533A6BFEF9 }}
